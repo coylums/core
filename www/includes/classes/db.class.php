@@ -87,13 +87,13 @@
 		
 			$_config_array = $this->db_config->get_config_array();
 			
-			$_type 		= $_config_array['master']['type'];
-			$_host		= $_config_array['master']['host'];
-			$_port 		= $_config_array['master']['port'];
-			$_db 			= $_config_array['master']['db'];
-			$_user 		= $_config_array['master']['user'];
-			$_password 	= $_config_array['master']['password'];
-			$_persist 		= $_config_array['master']['persist'];
+			$_type 		= $_config_array['slave']['type'];
+			$_host		= $_config_array['slave']['host'];
+			$_port 		= $_config_array['slave']['port'];
+			$_db 			= $_config_array['slave']['db'];
+			$_user 		= $_config_array['slave']['user'];
+			$_password 	= $_config_array['slave']['password'];
+			$_persist 		= $_config_array['slave']['persist'];
 			
 			return new PDO($_type . ':host=' . $_host . ';port=' . $_port . ';dbname=' . $_db, $_user, $_password, array(PDO::ATTR_PERSISTENT => $_persist));
 			
