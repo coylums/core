@@ -1,0 +1,109 @@
+/* Coy's Project Site CSS */
+
+/* Color Palette */
+
+.float_left { float: left; }
+.float_right { float: right; }
+
+.active { color: #a71930; }
+
+a:link, a:visited, a:active { border: none; color: #818181; text-decoration: none; }
+
+ul li { font-family: avenir, georgia, times, sans-serif; color: #898a8b; font-weight: normal;}
+
+body { background-color: #3e3e3e; }
+
+h1 { font-family: Verdana, arial, geneva, sans-serif; font-size: 38px; margin-bottom: 10px; color: #ffffff; line-height: 50px; font-weight: normal; }
+h2 { font-family: Verdana, arial, geneva, sans-serif; font-size: 20px; margin-bottom: 10px; color: #ffffff; line-height: 40px; font-weight: normal; }
+h3 { font-family: Verdana, arial, geneva, sans-serif; font-size: 24px; margin-bottom: 10px; color: #ffffff; line-height: 30px; font-weight: normal; }
+h4 { font-family: Verdana, arial, geneva, sans-serif; font-size: 20px; margin-bottom: 10px; color: #ffffff; line-height: 25px; font-weight: normal; }
+h5 { font-family: Verdana, arial, geneva, sans-serif; font-size: 18px; margin-bottom: 10px; color: #ffffff; line-height: 20px; font-weight: normal; }
+h6 { font-family: Verdana, arial, geneva, sans-serif; font-size: 16px; margin-bottom: 10px; color: #ffffff; line-height: 20px; font-weight: normal; }
+
+p { font-size: 10px; font-family: Verdana, arial, geneva, sans-serif; margin-bottom: 20px; color: #000000; line-height: 22px; }
+
+ul li { font-size: 10px; font-family: Verdana, arial, geneva, sans-serif; margin-bottom: 7px; }
+
+ul#logo_cycle li { width: 50px; height: 91px; position: absolute; top: 0px; left: 0px;  }
+ul#logo_cycle li.blue { background-image: url(../images/c26_logo_blue.png); background-position: top left; opacity: 1;}
+ul#logo_cycle li.green { background-image: url(../images/c26_logo_green.png); background-position: top left; opacity: 0; }
+ul#logo_cycle li.grey { background-image: url(../images/c26_logo_grey.png); background-position: top left; opacity: 0; }
+ul#logo_cycle li.orange { background-image: url(../images/c26_logo_orange.png); background-position: top left; opacity: 0; }
+ul#logo_cycle li.red { background-image: url(../images/c26_logo_red.png); background-position: top left; opacity: 0; }
+
+#wrapper { width: 950px; height: 640px; position: relative; background-color: #ffffff; }
+.auto_center { margin: 0px auto; }
+
+#header { position: absolute; width: 950px; height: 95px; }
+#header #title { text-indent: -9999px; }
+#header #subtitle { text-indent: -9999px; }
+#header #logo { display: block; width: 194px; height: 91px; position: absolute; top: 0px; left: 0px; text-indent: -9999px; }
+#header #notoriety { position: absolute; top: 80px; left: 235px; height: 21px; width: 300px; background-image: url(../images/addy_star.png); background-repeat: no-repeat; background-position: left center; padding-left: 28px; }
+#header #notoriety p { color: #69696B; }
+
+#loading { background-image: url(../images/loading_transparent.gif); width: 24px; height: 24px; position: absolute; top: 315px; left: 587px; z-index: 1; }
+.hidden { display: none; }  
+
+ul#navigation { position: absolute; top: 80px; left: 645px; }
+ul#navigation li { float: left; display: inline; }
+ul#navigation li a { display: block; text-indent: -9999px; height: 21px; }
+ul#navigation li#portfolio a { width: 60px; background-image: url(../images/c26_nav.png); background-position: -8px 0px; margin-right: 37px; }
+ul#navigation li#about a { width: 40px; background-position: -104px 0px; background-image: url(../images/c26_nav.png); margin-right: 37px; }
+ul#navigation li#shop a { width: 34px; background-position: -179px 0px; background-image: url(../images/c26_nav.png); margin-right: 37px; }
+ul#navigation li#blog a { width: 30px; background-position: -250px 0px; background-image: url(../images/c26_nav.png); margin-right: 37px; }
+ul#navigation li#contact a { width: 53px; background-position: -311px 0px; background-image: url(../images/c26_nav.png); }
+
+ul#navigation li#portfolio a:hover { width: 60px; background-position: -8px -21px; }
+ul#navigation li#about a:hover { width: 40px; background-position: -104px -21px; }
+ul#navigation li#shop a:hover { width: 34px; background-position: -179px -21px }
+ul#navigation li#blog a:hover { width: 30px; background-position: -250px -21px }
+ul#navigation li#contact a:hover { width: 53px; background-position: -311px -21px }
+
+#sidebar { position: absolute; top: 10px; left: 0px; width: 207px; height: 515px; padding-left: 45px; padding-top: 0px; font-size: 12px; }
+#sidebar a { font-size: 9.5px; color: #69696b; }
+
+#portfolio_sidebar { position: absolute; top: 10px; left: 0px; width: 207px; height: 515px; padding-left: 45px; padding-top: 0px; font-size: 12px; }
+#contact_sidebar { position: absolute; top: 10px; left: 0px; width: 207px; height: 515px; padding-left: 45px; padding-top: 0px; font-size: 12px; }
+#about_sidebar { position: absolute; top: 10px; left: 0px; width: 207px; height: 515px; padding-left: 45px; padding-top: 0px; font-size: 12px; }
+#portfolio_sidebar a { font-size: 9.5px; color: #69696b; }
+#portfolio_sidebar a.portfolio_active { color: #c32128; }
+#contact_sidebar a.contact_active { color: #df4611; }
+#about_sidebar a.about_active { color: #a8b400; }
+
+#content { position: absolute; top: 110px; right: 0px; width: 950px; height: 520px; background-image: url(../images/content_bg.png); background-position: top right; background-repeat: repeat-y; overflow: hidden; }
+#content #home_image { position: relative; top: 6px; left: 11px; }
+
+#content #contact_container { position: relative; width: 698px; height: 444px; float: right; background-image: url(../images/contact.jpg); margin-top: 6px; margin-right: 11px; }
+#name { position: absolute; top: 209px; left: 41px; width: 124px; height: 9px; }
+#email  { position: absolute; top: 250px; left: 41px; width: 124px; height: 9px; }
+#message  { position: absolute; top: 295px; left: 41px; width: 128px; height: 64px; }
+#submit { position: absolute; top: 366px; left: 37px; }
+#status { position: absolute; top: 205px; left: 260px; color: #ffffff; font-size: 12px; }
+
+#content #about_container { width: 698px; height: 444px; float: right; background-image: url(../images/about_bg.jpg); margin-top: 6px; margin-right: 11px; text-indent: -9999px; }
+
+#content #main_portfolio_image { position: relative; top: 6px; left: 232px; }
+#content #main_portfolio_image_div { position: absolute; top: 6px; left: 239px; width: 708px; height: 454px; z-index: 1; background-repeat: no-repeat; }
+
+#left_button { width: 354px; height: 454px; float: left; background-image: url(../images/left_arrow.png); background-position: center left; background-repeat: no-repeat; cursor: pointer; }
+#right_button { width: 354px; height: 454px; float: right; background-image: url(../images/right_arrow.png); background-position: 315px center; background-repeat: no-repeat; cursor: pointer; }
+
+#content ul#portfolio_image_links { position: absolute; bottom: 8px; left: 236px; z-index: 1; }
+#content ul#portfolio_image_links li { display: inline; float: left; }
+#content ul#portfolio_image_links li a { display: block; width: 16px; height: 17px; background-image: url(../images/portfolio_bullets.png); background-position: 13px 0px; }
+#content ul#portfolio_image_links li a:hover { background-position:  0px 0px; }
+
+#content ul#portfolio_image_links li a.active { background-position:  0px 0px; }
+
+#image_title { font-size: 10px; position: absolute; top: 457px; left: 240px; color: #3e3e3e; }
+#image_subtitle { font-size: 9.5px; position: absolute; top: 472px; left: 240px; color: #69696b; }
+
+#footer { position: absolute; bottom: 0px; left: 0px; height: 35px; width: 950px; background-image: url(../images/footer_bg.png); background-position: top right; }
+#footer p#copyright { position: absolute; top: 14px; left: 45px; color: #818181; font-size: 11px; }
+#footer #twitter { position: absolute; top: 10px; left: 871px; display: block; width: 21px; height: 20px; background-image: url(../images/social_icons.png); background-position: 0px 0px; background-repeat: no-repeat; text-indent: -9999px; }
+#footer #facebook { position: absolute; top: 10px; left: 896px; display: block; width: 21px; height: 20px; background-image: url(../images/social_icons.png); background-position: -24px 0px; background-repeat: no-repeat; text-indent: -9999px; }
+#footer #rss { position: absolute; top: 10px; left: 921px; display: block; width: 21px; height: 20px; background-image: url(../images/social_icons.png); background-position: -48px 0px; background-repeat: no-repeat; text-indent: -9999px; }
+#footer #twitter:hover { background-position: 0px -20px; }
+#footer #facebook:hover { background-position: -24px -20px; }
+#footer #rss:hover { background-position: -48px -20px; }
+#footer #follow { position: absolute; top: 12px; left: 834px;  color: #cfcfd0; }
