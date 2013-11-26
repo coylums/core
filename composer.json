@@ -1,6 +1,30 @@
- {
-    "name": "coylums/nucleus",
-    "require": {
-        "php": ">=5.3.0"
-    }
+{
+	"authors": [{
+	
+		"name": "Coy Woolard",
+		"email": "coylums@gmail.com",
+		"homepage": "http://www.coylums.com",
+		"role": "Developer"
+	
+	}],
+	"repositories": [{
+	
+		"type": "vcs",
+		"url": "https://coylums@bitbucket.org/coylums/nucleus.git"
+	
+	}],
+	"require": {
+	
+		"php": ">=5.3.0"
+		
+	},
+	"autoload": {
+	
+		"classmap": [
+		
+			"classes"
+		
+		]
+	
+	}
 }
