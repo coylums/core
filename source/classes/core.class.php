@@ -1,14 +1,14 @@
 <?php
 
-	
-	
-
 	abstract class core
 	{
 
 		protected $db_variables;
+		
 		public $db_read;
 		public $db_write;
+		
+		protected $db;
 		protected $table;
 		
 		private $has_changed;
@@ -23,8 +23,10 @@
 				$this->db_read = $_db->get_read_connection();
 				$this->db_write = $_db->get_write_connection();
 */
+
 				$this->db_read = $_db;
 				$this->db_write = $_db;
+				$this->db = $_db;
 				
 			}
 			else
@@ -96,7 +98,7 @@
 							{
 							
 								//we need to MD5 before saving
-								$_data = md5($_data . SALT);
+								$_data = md5($_data . $this->db->db_config['db']['salt']);
 							
 							}
 						
@@ -615,7 +617,7 @@
 		function put_value($_var, $_new_data)
 		{
 		
-			return $this->data($_var, $_new_data);
+			return $this->data($_var, trim($_new_data));
 		
 		}
 	
@@ -636,11 +638,95 @@
 			
 		}
 		
+		function toggle_enable()
+		{
+			
+			if($this->get_value('is_enabled') == 0)
+			{
+				
+				$this->put_value('is_enabled', 1);
+				
+			}
+			else
+			{
+				
+				$this->put_value('is_enabled', 0);
+				
+			}
+			
+		}
+		
 		//Dump it out
 		function dump()
 		{
 		
 			errors::log_to_file(var_export($this->db_variables, TRUE));
+			
+		}
+
+		function get_primaries($_where = "", $_offset = 0, $_limit = 25, $_order_by = 'id')
+		{
+			
+			//$_object = new $this->class_name($this->db);
+		
+			//Ordering by date_created DESC to get the most recent submission
+			$_primary_array = $this->db_read->retrieve_all_primaries($this->table, $this->db_variables, $_where, $_offset, $_limit, 'ORDER BY ' . $_order_by);
+			
+			return $_primary_array;
+		
+		}
+	
+		function get_paginated_primaries($_pagination, $_where = "", $_order_by = 'id')
+		{
+			
+			//$_object = new $this->class_name($this->db);
+		
+			//Ordering by user_id DESC to get the most recent submission
+			$_primary_array = $this->db_read->retrieve_all_primaries($this->table, $this->db_variables, $_where, $_pagination->get_offset(), $_pagination->get_limit(), 'ORDER BY ' . $_order_by);
+			
+			return $_primary_array;
+		
+		}
+		
+		function get_distinct_primaries($distinct_key, $_where = "", $_offset = 0, $_limit = 25, $_order_by = 'id')
+		{
+			
+			//$_object = new $this->class_name($this->db);
+		
+			//Ordering by date_created DESC to get the most recent submission
+			$_primary_array = $this->db_read->retrieve_distinct_primaries($this->table, $distinct_key, $_where, $_offset, $_limit, 'ORDER BY ' . $_order_by);
+			
+			return $_primary_array;
+		
+		}
+		
+		function get_assoc_array_for_field_name($_field_name, $_order_by = 'id', $_where = '')
+		{
+		
+			//Ordering by date_created DESC to get the most recent submission
+			$_primary_array = $this->db_read->retrieve_all_primaries($this->table, $this->db_variables, $_where, 0, $this->get_count(), 'ORDER BY ' . $_order_by);
+			
+			$_result_set = array();
+			
+			foreach($_primary_array as $_primary)
+			{
+			
+				$_object->load_by_primary($_primary);
+				
+				$_result_set[$this->get_value('id')] = $this->get_value($_field_name);
+				
+			}
+			
+			return $_result_set;
+			
+		}
+		
+		function get_count($_where = '')
+		{
+		
+			//$_object = new $this->class_name($this->db);
+			
+			return $this->db_read->count_objects($this->table, $this->db_variables, $_where);
 			
 		}
 	

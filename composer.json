@@ -18,12 +18,13 @@
 	}],
     "require": {
 
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "fabpot/Pimple": "*"
 
     },
     "autoload": {
 
-        "psr-0": { "www/includes/": "." }
+        "psr-0": { "source/": "." }
 
     }
 }

@@ -12,6 +12,8 @@
 	class errors
 	{
 	
+		static $default_log_path = null;
+	
 		static function log_to_server($_log_text)
 		{
 		

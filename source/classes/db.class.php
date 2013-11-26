@@ -35,7 +35,7 @@
 		const DB_FLOAT = 256;
 		
 		//internal class variables
-		private $db_config;
+		public $db_config;
 		private $db_config_array;
 		
 		private $salt;
@@ -48,7 +48,7 @@
 		{
 		
 			$this->db_config = $_config;
-			$this->db_config_array = $_config->get_config_array();
+			//$this->db_config_array = $_config->get_config_array();
 			
 			try
 			{
@@ -66,7 +66,7 @@
 				
 			}
 			
-			$this->salt = $this->db_config_array['salt'];
+			$this->salt = $this->db_config['db']['salt'];
 			
 		}
 
@@ -85,15 +85,15 @@
 		public function get_db_read()
 		{
 		
-			$_config_array = $this->db_config->get_config_array();
+			$_config_array = $this->db_config;
 			
-			$_type 		= $_config_array['slave']['type'];
-			$_host		= $_config_array['slave']['host'];
-			$_port 		= $_config_array['slave']['port'];
-			$_db 			= $_config_array['slave']['db'];
-			$_user 		= $_config_array['slave']['user'];
-			$_password 	= $_config_array['slave']['password'];
-			$_persist 		= $_config_array['slave']['persist'];
+			$_type 		= $_config_array['db']['read']['type'];
+			$_host		= $_config_array['db']['read']['host'];
+			$_port 		= $_config_array['db']['read']['port'];
+			$_db 			= $_config_array['db']['read']['db'];
+			$_user 		= $_config_array['db']['read']['user'];
+			$_password 	= $_config_array['db']['read']['password'];
+			$_persist 		= $_config_array['db']['read']['persist'];
 			
 			return new PDO($_type . ':host=' . $_host . ';port=' . $_port . ';dbname=' . $_db, $_user, $_password, array(PDO::ATTR_PERSISTENT => $_persist));
 			
@@ -109,15 +109,15 @@
 		public function get_db_write()
 		{
 			
-			$_config_array = $this->db_config->get_config_array();
+			$_config_array = $this->db_config;
 			
-			$_type 		= $_config_array['master']['type'];
-			$_host		= $_config_array['master']['host'];
-			$_port 		= $_config_array['master']['port'];
-			$_db 			= $_config_array['master']['db'];
-			$_user 		= $_config_array['master']['user'];
-			$_password 	= $_config_array['master']['password'];
-			$_persist 		= $_config_array['master']['persist'];
+			$_type 		= $_config_array['db']['write']['type'];
+			$_host		= $_config_array['db']['write']['host'];
+			$_port 		= $_config_array['db']['write']['port'];
+			$_db 			= $_config_array['db']['write']['db'];
+			$_user 		= $_config_array['db']['write']['user'];
+			$_password 	= $_config_array['db']['write']['password'];
+			$_persist 		= $_config_array['db']['write']['persist'];
 			
 			return new PDO($_type . ':host=' . $_host . ';port=' . $_port . ';dbname=' . $_db, $_user, $_password, array(PDO::ATTR_PERSISTENT => $_persist));
 			
@@ -203,12 +203,12 @@
 			//decide if we are using additional db salt in encryption
 			$_use_extra_salt = FALSE;
 			
-			if(isset($_variables['salt']))
+			if(isset($_variables['db']['salt']))
 			{
 				
 				$_use_extra_salt = TRUE;
 				
-				$_extra_salt = $_variables['salt']['data'];
+				$_extra_salt = $_variables['db']['salt']['data'];
 				
 			}
 			
@@ -317,7 +317,7 @@
 			else
 			{
 				
-				return TRUE;
+				return true;
 				
 			}
 			
@@ -424,12 +424,12 @@
 			$_use_extra_salt = FALSE;
 			
 			
-			if(isset($_row['salt']))
+			if(isset($_row['db']['salt']))
 			{
 				
 				$_use_extra_salt = TRUE;
 				
-				$_extra_salt = $_row['salt'];
+				$_extra_salt = $_row['db']['salt'];
 				
 			}
 			
