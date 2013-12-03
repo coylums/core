@@ -1,5 +1,7 @@
 <?php
 
+	namespace core;
+
 	abstract class core
 	{
 
@@ -16,7 +18,7 @@
 		function __construct($_db)
 		{
 		
-			if(get_class($_db) == 'db')
+			if(get_class($_db) == 'core\db')
 			{
 				
 /*
@@ -98,7 +100,7 @@
 							{
 							
 								//we need to MD5 before saving
-								$_data = md5($_data . $this->db->db_config['db']['salt']);
+								$_data = md5($_data . $this->db['db']['salt']);
 							
 							}
 						
@@ -149,7 +151,7 @@
 					else
 					{
 					
-						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT);//validate data based on type
+						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT); //validate data based on type
 						
 					}
 					
@@ -166,7 +168,7 @@
 					else
 					{
 					
-						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_FLOAT),FILTER_VALIDATE_FLOAT);//validate data based on type
+						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),FILTER_VALIDATE_FLOAT); //validate data based on type
 						
 					}
 					
@@ -182,20 +184,31 @@
 					}
 					else
 					{
-					
-						$datearray = explode('-',$_data);
-						
-						if(checkdate($datearray[1],$datearray[2],$datearray[0]))
+
+						if(strtotime($_data) && substr_count($_data, '-') == 2)
 						{
-						
-							$data = $_data;
+					
+							$date_array = explode('-', $_data);
 							
+							if(checkdate($date_array[1], $date_array[2], $date_array[0]))
+							{
+							
+								$data = $_data;
+								
+							}
+							else
+							{
+							
+								$data = FALSE;
+								
+							}
+												
 						}
 						else
 						{
-						
+
 							$data = FALSE;
-							
+
 						}
 						
 					}
@@ -212,45 +225,58 @@
 					}
 					else
 					{
-					
-						$timearray = explode(':',$_data);
-						
-						$valid = FALSE;
-						
-						if(count($timearray)==2 || count($timearray)==3)
-						
+
+						if(strpos($_data, ':') !== false)
 						{
-						
-							if(is_numeric($timearray[0]) && (int) $timearray[0] >= 0 && (int) $timearray[0]<24)
-							
+					
+							$time_array = explode(':', $_data);
+
+							$valid = FALSE;
+
+							if(count($time_array) == 2 || count($time_array) == 3)
+
 							{
-							
-								if(is_numeric($timearray[1]) && (int) $timearray[1] >= 0 && (int) $timearray[1]<60)
+
+								if(is_numeric($time_array[0]) && (int) $time_array[0] >= 0 && (int) $time_array[0] < 24)
+
 								{
-								
-									if(isset($timearray[2]))
+
+									if(is_numeric($time_array[1]) && (int) $time_array[1] >= 0 && (int) $time_array[1] <
+										60)
 									{
-									
-										if(is_numeric($timearray[2]) && (int) $timearray[2] >= 0 && (int) $timearray[2]<60)
+
+										if(isset($time_array[2]))
 										{
-										
-											$valid = TRUE;
-											
+
+											if(is_numeric($time_array[2]) && (int) $time_array[2] >= 0 && (int)
+												$time_array[2] < 60)
+											{
+
+												$valid = TRUE;
+
+											}
+
 										}
-										
+										else
+										{
+
+											$_data .= ":00";
+											$valid = TRUE;
+
+										}
+
 									}
-									else
-									{
-									
-										$_data .= ":00";
-										$valid = TRUE;
-										
-									}
-									
+
 								}
-								
+
 							}
-							
+
+						}
+						else
+						{
+
+							$valid = FALSE;
+
 						}
 						
 						if($valid)
@@ -265,6 +291,7 @@
 							$data = FALSE;
 							
 						}
+
 					}
 					
 					break;
@@ -279,70 +306,76 @@
 					}
 					else
 					{
-					
+
 						$valid = FALSE;
-						
-						$datetimearray = explode(' ',$_data);
-						
-						if(isset($datetimearray[0]))
+
+						if(strtotime($_data))
 						{
-						
-							$datearray = explode('-',$datetimearray[0]);
-							
-							if(checkdate($datearray[1],$datearray[2],$datearray[0]))
+
+							$date_time_array = explode(' ', $_data);
+
+							if(isset($date_time_array[0]))
 							{
-							
-								if(isset($datetimearray[1]))
+
+								$date_array = explode('-', $date_time_array[0]);
+
+								if(checkdate($date_array[1], $date_array[2], $date_array[0]))
 								{
-								
-									$timearray = explode(':',$datetimearray[1]);
-									
-									if(count($timearray)==2 || count($timearray)==3)
+
+									if(isset($date_time_array[1]))
 									{
-									
-										if(is_numeric($timearray[0]) && (int) $timearray[0] >= 0 && (int) $timearray[0]<24)
+
+										$time_array = explode(':', $date_time_array[1]);
+
+										if(count($time_array) == 2 || count($time_array) == 3)
 										{
-										
-											if(is_numeric($timearray[1]) && (int) $timearray[1] >= 0 && (int) $timearray[1]<60)
+
+											if(is_numeric($time_array[0]) && (int) $time_array[0] >= 0 && (int) $time_array[0]<24)
 											{
-											
-												if(isset($timearray[2]))
+
+												if(is_numeric($time_array[1]) && (int) $time_array[1] >= 0 && (int) $time_array[1]<60)
 												{
-												
-													if(is_numeric($timearray[2]) && (int) $timearray[2] >= 0 && (int) $timearray[2]<60)
+
+													if(isset($time_array[2]))
 													{
-													
-														$valid = TRUE;
-														
+
+														if(is_numeric($time_array[2]) && (int) $time_array[2] >= 0 && (int) $time_array[2]<60)
+														{
+
+															$valid = TRUE;
+
+														}
+
 													}
-													
+													else
+													{
+
+														$_data .= ":00";
+														$valid = TRUE;
+
+													}
+
 												}
-												else
-												{
-												
-													$_data .= ":00";
-													$valid = TRUE;
-													
-												}
-												
+
 											}
-											
+
 										}
-										
+
 									}
-									
+									else
+									{
+
+										$_data .= " 00:00:00";
+										$valid = TRUE;
+
+									}
+
 								}
-								else
-								{
-								
-									$_data .= " 00:00:00";
-									$valid = TRUE;
-									
-								}
-								
+
 							}
-							
-						}					
+
+						}
+
 						if($valid)
 						{
 						
@@ -355,6 +388,7 @@
 							$data = FALSE;
 							
 						}
+
 					}
 					
 					break;
@@ -630,13 +664,13 @@
 			return $_primary;
 		
 		}
-		
-		function get_count()
-		{
-			
-			return $this->db_read->retrieve_count($this->table, $this->db_variables);
-			
-		}
+
+//		function get_count()
+//		{
+//
+//			return $this->db_read->retrieve_count($this->table, $this->db_variables);
+//
+//		}
 		
 		function toggle_enable()
 		{
@@ -710,8 +744,8 @@
 			
 			foreach($_primary_array as $_primary)
 			{
-			
-				$_object->load_by_primary($_primary);
+
+				$this->load_by_primary($_primary);
 				
 				$_result_set[$this->get_value('id')] = $this->get_value($_field_name);
 				

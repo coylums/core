@@ -1,6 +1,8 @@
 <?php
 
-	class security_group extends core
+	namespace core;
+
+	class user extends core
 	{
 
 		function __construct($_db, $_primary_id = 0)
@@ -8,7 +10,7 @@
 
 			parent::__construct($_db);
 
-			$this->table = security_group;
+			$this->table = 'users';
 
 			$this->db_variables = array(
 
@@ -26,14 +28,49 @@
 					'accessible' => DB::DB_RW,
 					'primary_key' => FALSE
 				),
-				'name' 		=> array(
+				'security_group' 		=> array(
+					'data' => DB::DEFAULT_INT,
+					'type' => DB::DB_INT,
+					'encrypt' => FALSE,
+					'accessible' => DB::DB_RW,
+					'primary_key' => FALSE
+				),
+				'notify_by_email' 		=> array(
+					'data' => DB::DEFAULT_INT,
+					'type' => DB::DB_INT,
+					'encrypt' => FALSE,
+					'accessible' => DB::DB_RW,
+					'primary_key' => FALSE
+				),
+				'first_name' 		=> array(
 					'data' => DB::DEFAULT_STR,
 					'type' => DB::DB_STR,
 					'encrypt' => FALSE,
 					'accessible' => DB::DB_RW,
 					'primary_key' => FALSE
 				),
-				'rights' 		=> array(
+				'last_name' 		=> array(
+					'data' => DB::DEFAULT_STR,
+					'type' => DB::DB_STR,
+					'encrypt' => FALSE,
+					'accessible' => DB::DB_RW,
+					'primary_key' => FALSE
+				),
+				'email_address' 		=> array(
+					'data' => DB::DEFAULT_STR,
+					'type' => DB::DB_STR,
+					'encrypt' => FALSE,
+					'accessible' => DB::DB_RW,
+					'primary_key' => FALSE
+				),
+				'hash' 		=> array(
+					'data' => DB::DEFAULT_STR,
+					'type' => DB::DB_STR,
+					'encrypt' => FALSE,
+					'accessible' => DB::DB_RW,
+					'primary_key' => FALSE
+				),
+				'password' 		=> array(
 					'data' => DB::DEFAULT_STR,
 					'type' => DB::DB_STR,
 					'encrypt' => FALSE,
@@ -54,7 +91,7 @@
 					'accessible' => DB::DB_READ,
 					'primary_key' => FALSE
 				),
-				'date_deleted' 		=> array(
+				'date_disabled' 		=> array(
 					'data' => DB::DEFAULT_DATE,
 					'type' => DB::DB_DATE,
 					'encrypt' => FALSE,

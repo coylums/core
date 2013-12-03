@@ -10,16 +10,10 @@
 		"role": "Developer"
 	
 	}],
-	"repositories": [{
-	
-		"type": "vcs",
-		"url": "https://coylums@bitbucket.org/coylums/nucleus.git"
-	
-	}],
     "require": {
 
         "php": ">=5.3.0",
-        "fabpot/Pimple": "*"
+        "pimple/pimple": "*"
 
     },
     "autoload": {

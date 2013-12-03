@@ -4,9 +4,9 @@
 	ini_set('display_errors', '1');
 
 		
-	$link = mysql_connect('internal-db.s139514.gridserver.com', 'db139514_Guest', 'Guest_2012');
+	$link = mysql_connect('localhost', 'wwoolard', 'filters1!');
 	
-	$database = 'db139514_slim_test';
+	$database = 'test_core';
 
 	mysql_select_db($database, $link);
 
@@ -155,7 +155,7 @@
 		$class_text .= "\t" . "}";
 	
 		//save file
-		$handle = fopen('/home/139514/domains/slim.c26-dev.info/html/includes/classes/' . $table . '.class.php','w');
+		$handle = fopen('/var/www/logs/' . $table . '.class.php','w');
 		
 		fwrite($handle, $class_text);
 		
@@ -164,5 +164,3 @@
 		$class_text = '';
 		
 	}
-		
-?>

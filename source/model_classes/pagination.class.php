@@ -2,7 +2,7 @@
 
 	//optional
 
-	
+	namespace core;
 
 	class pagination extends core
 	{
@@ -28,7 +28,7 @@
 			
 			$this->limit = $_limit;
 			
-			$this->target_page = get_current_url() . "?"; //get_current_url is in ../functions.php
+			$this->target_page = $_db->db_config['domain_name'] . "?"; //get_current_url is in ../functions.php
 		
 		}
 		

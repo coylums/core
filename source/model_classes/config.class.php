@@ -1,6 +1,8 @@
 <?php
 
-	class config extends Pimple
+	namespace core;
+
+	class config extends \Pimple
 	{
 	
 	    public function __construct()
@@ -13,7 +15,7 @@
 			
 				return $_SERVER['HTTP_HOST'];
 			
-			}
+			};
 			
 			$this['domain_name'] = function ()
 			{
@@ -24,19 +26,17 @@
 				
 				return $url;
 			
-			}
+			};
 			
 			$this['url'] = function ()
 			{
 				
 				return get_current_domain() . $_SERVER['PHP_SELF'];
 			
-			}
+			};
 	        
 	        $this['object'] = function () { return stdClass(); };
-	        
+
 	    }
 	    
 	}
-
-?>

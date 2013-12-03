@@ -1,5 +1,7 @@
 <?php
 
+	//TODO document
+
 	/*
 	error_log() log types
 	0	message is sent to PHP's system logger, using the Operating System's system logging mechanism or a file, depending on what the error_log configuration directive is set to. This is the default option.
@@ -8,6 +10,8 @@
 	3	message is appended to the file destination. A newline is not automatically added to the end of the message string.
 	4	message is sent directly to the SAPI logging handler.
 	*/
+
+	namespace core;
 
 	class errors
 	{
@@ -29,25 +33,25 @@
 			//(to create new line based on the system PHP is running on)
 			if($_log_path == '')
 			{
-			
-				if(!file_exists(DEFAULT_LOG_PATH))
+
+				if(!file_exists('/var/www/logs/' . date('m-d-y') . '.log'))
 				{
-				
+
 					//create log file for today if it doesn't exist already.
-					$_log_file = fopen(DEFAULT_LOG_PATH, 'w');
-					
+					$_log_file = fopen('/var/www/logs/' . date('m-d-y') . '.log', 'w');
+
 					fclose($_log_file);
-				
+
 				}
-			
-				error_log(date("m-d-Y H:i:s") . " " . $_log_text . PHP_EOL, 3, DEFAULT_LOG_PATH);
-			
+
+				error_log(date("m-d-Y H:i:s") . " " . $_log_text . PHP_EOL, 3, '/var/www/logs/' . date('m-d-y') . '.log');
+
 			}
 			else
 			{
-			
+
 				error_log($_log_text . PHP_EOL, 3, $_log_path);
-			
+
 			}
 
 		}
