@@ -1,5 +1,5 @@
 {
-	"name": "coylums/nucleus",
+	"name": "coylums/core",
 	"type": "library",
 	"description": "This is the core PHP framework used in my websites/web applications.",
 	"authors": [{
@@ -20,5 +20,6 @@
 
         "psr-0": { "source/": "." }
 
-    }
+    },
+    "minimum-stability": "dev"
 }
