@@ -18,7 +18,7 @@
     },
     "autoload": {
 
-        "psr-0": { "core": "source/" }
+        "psr-0": { "core": "source/model_classes" }
 
     },
     "minimum-stability": "dev"
