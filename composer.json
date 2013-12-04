@@ -18,7 +18,7 @@
     },
     "autoload": {
 
-        "psr-0": { "coylums": "core/" }
+        "psr-0": { "coylums\\core": "source" }
 
     },
     "minimum-stability": "dev"
