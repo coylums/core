@@ -18,7 +18,7 @@
     },
     "autoload": {
 
-        "psr-0": { "core": "source/" }
+        "classmap": ["source"]
 
     },
     "minimum-stability": "dev"
