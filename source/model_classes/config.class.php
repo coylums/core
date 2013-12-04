@@ -31,7 +31,7 @@
 			$this['url'] = function ()
 			{
 				
-				return get_current_domain() . $_SERVER['PHP_SELF'];
+				return $this['domain_name'] . $_SERVER['PHP_SELF'];
 			
 			};
 	        
