@@ -35,7 +35,7 @@
 
 			$this['root_url'] = function () {
 
-				return $this['domain_name'] . dirname($_SERVER['PHP_SELF']);
+				return $this['domain_name'] . dirname($_SERVER['PHP_SELF']) . '/';
 
 			};
 	        
