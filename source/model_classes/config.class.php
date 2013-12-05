@@ -32,6 +32,12 @@
 				return $this['domain_name'] . $_SERVER['PHP_SELF'];
 			
 			};
+
+			$this['root_url'] = function () {
+
+				return $this['domain_name'] . dirname($_SERVER['PHP_SELF']);
+
+			};
 	        
 	        $this['object'] = function () { return stdClass(); };
 
