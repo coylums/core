@@ -7,8 +7,6 @@
 	
 	    public function __construct()
 	    {
-	    
-	        $this['parameter'] = 'foo';
 	        
 			$this['host_name'] = function ()
 			{
