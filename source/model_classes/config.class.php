@@ -20,7 +20,7 @@
 				
 				$protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') === FALSE ? 'http' : 'https';
 				
-				$url = $protocol . '://' . $this['host_name'];
+				$url = $protocol . '://' . $this['host_name'] . '/';
 				
 				return $url;
 			
