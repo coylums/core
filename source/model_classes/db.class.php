@@ -62,7 +62,7 @@
 			catch (\PDOException $_e)
 			{
 
-				errors::log_to_file("Error connecting to database.");
+				error_log("Error connecting to database.");
 
 				die("Error connecting to database: " . $_e);
 
@@ -276,7 +276,7 @@
 
 				}
 
-				errors::log_to_file("Failed saving row: $_message");
+				error_log("Failed saving row: $_message");
 
 				return false;
 
@@ -288,7 +288,7 @@
 			if($_affected == 0)
 			{
 
-				errors::log_to_file("No rows updated!");
+				error_log("No rows updated!");
 
 				return false;
 
@@ -297,7 +297,7 @@
 			if($_affected > 1)
 			{
 
-				errors::log_to_file("Affected more than one row! Attempting rollback...");
+				error_log("Affected more than one row! Attempting rollback...");
 
 				$this->read_connection->rollBack();
 
@@ -396,7 +396,7 @@
 
 				}
 
-				errors::log_to_file("SQL failed: " . $_message);
+				error_log("SQL failed: " . $_message);
 
 				return false;
 
@@ -406,7 +406,7 @@
 			if($_statement->fetchColumn() != 1)
 			{
 
-				errors::log_to_file('We got a number of results other than 1');
+				error_log('We got a number of results other than 1');
 
 				return false;
 
@@ -641,7 +641,7 @@
 
 				}
 
-				errors::log_to_file("SQL failed: " . $_message);
+				error_log("SQL failed: " . $_message);
 
 				return false;
 
@@ -651,7 +651,7 @@
 			if($_statement->fetchColumn()!=1)
 			{
 
-				errors::log_to_file('We got a number of results other than 1');
+				error_log('We got a number of results other than 1');
 
 				return false;
 
@@ -719,7 +719,7 @@
 
 				}
 
-				errors::log_to_file("SQL failed: " . $_message);
+				error_log("SQL failed: " . $_message);
 
 				return false;
 
@@ -729,7 +729,7 @@
 			if($_statement->fetchColumn()!=1)
 			{
 
-				errors::log_to_file('We got a number of results other than 1');
+				error_log('We got a number of results other than 1');
 
 				return false;
 
@@ -759,7 +759,7 @@
 				if(empty($this->salt))
 				{
 
-					errors::log_to_file("class SALT is undefined! This is very bad...");
+					error_log("class SALT is undefined! This is very bad...");
 
 				}
 
@@ -799,7 +799,7 @@
 				if(empty($this->salt))
 				{
 
-					errors::log_to_file("class SALT is undefined! This is very bad...");
+					error_log("class SALT is undefined! This is very bad...");
 
 				}
 

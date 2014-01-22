@@ -5,7 +5,6 @@
 
 	require 'source/model_classes/core.class.php';
 	require 'source/model_classes/db.class.php';
-	require 'source/model_classes/errors.class.php';
 
 	require 'includes/classes/user.class.php';
 

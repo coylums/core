@@ -71,7 +71,7 @@
 				else
 				{
 				
-					errors::log_to_file("$_var is not allowed to be read");
+					error_log("$_var is not allowed to be read");
 					
 					return false;
 				
@@ -115,7 +115,7 @@
 					else
 					{
 					
-						errors::log_to_file($_var . ' failed validation for: ' . get_class($this) . '. Invalid data: ' . $_new_data);
+						error_log($_var . ' failed validation for: ' . get_class($this) . '. Invalid data: ' . $_new_data);
 						
 						return false;
 					
@@ -124,7 +124,7 @@
 				else
 				{
 				
-					errors::log_to_file($_var . ' is not allowed to be written for: ' . get_class($this));
+					error_log($_var . ' is not allowed to be written for: ' . get_class($this));
 					
 					return false;
 				
@@ -480,7 +480,7 @@
 			if(!$_result)
 			{
 			
-				errors::log_to_file("load failed");
+				error_log("load failed");
 				
 				return false;
 			
@@ -510,7 +510,7 @@
 					if(!$_data)
 					{
 					
-						errors::log_to_file('load_by_primary failed data validation for: ' . get_class($this));
+						error_log('load_by_primary failed data validation for: ' . get_class($this));
 						
 						return false;
 					
@@ -540,7 +540,7 @@
 					if(!$_data)
 					{
 					
-						errors::log_to_file('delete_by_primary failed data validation for: ' . get_class($this));
+						error_log('delete_by_primary failed data validation for: ' . get_class($this));
 						
 						return false;
 					
@@ -567,7 +567,7 @@
 				if(!$_result)
 				{
 				
-					errors::log_to_file("write failed");
+					error_log("write failed");
 					
 					return 0;
 				
@@ -590,7 +590,7 @@
 								if(!$_data)
 								{
 								
-									errors::log_to_file('save failed validation of primary key on insert for:' . get_class($this));
+									error_log('save failed validation of primary key on insert for:' . get_class($this));
 									
 								}
 								else
@@ -694,7 +694,7 @@
 		function dump()
 		{
 		
-			errors::log_to_file(var_export($this->db_variables, TRUE));
+			error_log(var_export($this->db_variables, TRUE));
 			
 		}
 
