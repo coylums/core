@@ -39,7 +39,7 @@
 			
 		}
 		
-		$class_text .= "\t" . "class " . $singular_table . " extends core\n";
+		$class_text .= "\t" . "class " . $singular_table . " extends \core\n";
 		$class_text .= "\t" . "{\n\n";
 		$class_text .= "\t\t" . 'function __construct($_db, $_primary_id = 0)' . "\n";
 		$class_text .= "\t\t" . "{\n\n";
@@ -62,22 +62,22 @@
 				case 'int' :
 				case 'tinyint' :
 				
-					$class_column_name_text .= "\t\t\t\t\t" . "'data' => DB::DEFAULT_INT," . "\n";
-					$class_column_name_text .= "\t\t\t\t\t" . "'type' => DB::DB_INT," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'data' => \core\DB::DEFAULT_INT," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'type' => \core\DB::DB_INT," . "\n";
 					
 					break;
 					
 				case 'varchar' :
 				
-					$class_column_name_text .= "\t\t\t\t\t" . "'data' => DB::DEFAULT_STR," . "\n";
-					$class_column_name_text .= "\t\t\t\t\t" . "'type' => DB::DB_STR," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'data' => \core\DB::DEFAULT_STR," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'type' => \core\DB::DB_STR," . "\n";
 					
 					break;
 					
 				case 'datetime' :
 				
-					$class_column_name_text .= "\t\t\t\t\t" . "'data' => DB::DEFAULT_DATE," . "\n";
-					$class_column_name_text .= "\t\t\t\t\t" . "'type' => DB::DB_DATE," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'data' => \core\DB::DEFAULT_DATE," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'type' => \core\DB::DB_DATE," . "\n";
 					
 					break;
 			
@@ -94,13 +94,13 @@
 				case 'date_deleted':
 				case 'id':
 				
-					$class_column_name_text .= "\t\t\t\t\t" . "'accessible' => DB::DB_READ," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'accessible' => \core\DB::DB_READ," . "\n";
 					
 					break;
 					
 				default;
 				
-					$class_column_name_text .= "\t\t\t\t\t" . "'accessible' => DB::DB_RW," . "\n";
+					$class_column_name_text .= "\t\t\t\t\t" . "'accessible' => \core\DB::DB_RW," . "\n";
 					
 					break;
 			
@@ -155,7 +155,7 @@
 		$class_text .= "\t" . "}";
 	
 		//save file
-		$handle = fopen('/var/www/logs/' . $table . '.class.php','w');
+		$handle = fopen('model_classes/' . $table . '.class.php','w');
 		
 		fwrite($handle, $class_text);
 		
