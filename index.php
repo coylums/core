@@ -8,27 +8,7 @@
 
 	require 'includes/classes/user.class.php';
 
-	$db['salt'] = '-2zs9-__-ASo7L3i-53nwIlW0-btL-87';
-
-	//write database
-	$db['write']['type'] = 'mysql';
-	$db['write']['host'] = 'localhost';
-	$db['write']['port'] = 3306;
-	$db['write']['db'] = 'test_core';
-	$db['write']['user'] = 'helpdesk';
-	$db['write']['password'] = '42doodles';
-	$db['write']['persist'] = false;
-
-	//read database
-	$db['read']['type'] = 'mysql';
-	$db['read']['host'] = 'localhost';
-	$db['read']['port'] = 3306;
-	$db['read']['db'] = 'test_core';
-	$db['read']['user'] = 'helpdesk';
-	$db['read']['password'] = '42doodles';
-	$db['read']['persist'] = false;
-
-	$config['db'] = $db;
+	$config = require 'config.php';
 
 	$new_db = new \core\db($config);
 
