@@ -3,8 +3,8 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 
-	require 'source/model_classes/core.class.php';
 	require 'source/model_classes/db.class.php';
+	require 'source/model_classes/core.class.php';
 
 	require 'includes/classes/user.class.php';
 
@@ -30,9 +30,9 @@
 
 	$config['db'] = $db;
 
-	$db = new \core\db($config);
+	$new_db = new \core\db($config);
 
-	$user = new \core\user($db);
+	$user = new \core\user($new_db);
 
 	$user->put_value('is_enabled', 1);
 	$user->put_value('security_group', 99);
