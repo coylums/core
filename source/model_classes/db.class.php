@@ -259,7 +259,8 @@
 
 			}
 
-			$_result = $_statement->Execute();//finally! Execute...
+			//finally! Execute...
+			$_result = $_statement->Execute();
 
 			//if no result, sql error
 			if(empty($_result))
@@ -322,36 +323,6 @@
 				return true;
 
 			}
-
-		}
-
-		function retrieve_count($_table, &$_variables, $_where = "")
-		{
-
-			/*
-						//we're assuming at this point the primary key is set in variables to do a retrieve on
-						foreach($_variables as $_name => $_data_array)
-						{
-
-							if($_data_array['primary_key'])
-							{
-
-								$_primary_key = $_name;
-
-								$_primary_value = $_data_array['data'];
-
-								break;
-
-							}
-
-						}
-			*/
-
-			$_statement = $this->read_connection->prepare("SELECT COUNT(*) FROM $_table");
-
-			$_result_set = $_statement->Execute();
-
-			return $_result_set;
 
 		}
 

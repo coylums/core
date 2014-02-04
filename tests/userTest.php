@@ -218,17 +218,6 @@
 
 			$user = new \core\user($this->_db);
 
-			// $user->put_value('is_enabled', 1);
-			// $user->put_value('security_group', 99);
-			// $user->put_value('notify_by_email', 1);
-			// $user->put_value('first_name', 'John');
-			// $user->put_value('last_name', 'Doe');
-			// $user->put_value('email_address', 'test100@email.com');
-			// $user->put_value('hash', 'test100@email.com');
-			// $user->put_value('password', 'password123');
-
-			// $user->save();
-
 			$this->assertGreaterThan(0, $user->find_primary('email_address', 'test1@email.com'));
 
 		}

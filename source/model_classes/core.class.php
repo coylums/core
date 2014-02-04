@@ -20,11 +20,6 @@
 		
 			if(get_class($_db) == 'core\db')
 			{
-				
-/*
-				$this->db_read = $_db->get_read_connection();
-				$this->db_write = $_db->get_write_connection();
-*/
 
 				$this->db_read = $_db;
 				$this->db_write = $_db;
@@ -133,7 +128,8 @@
 			}
 		
 		}
-		
+
+		//validate data based on type
 		function validate_data($_type,$_data)
 		{
 		
@@ -151,7 +147,7 @@
 					else
 					{
 					
-						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT); //validate data based on type
+						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_INT),FILTER_VALIDATE_INT);
 						
 					}
 					
@@ -168,7 +164,7 @@
 					else
 					{
 					
-						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),FILTER_VALIDATE_FLOAT); //validate data based on type
+						$data = filter_var(filter_var($_data,FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),FILTER_VALIDATE_FLOAT);
 						
 					}
 					
@@ -504,8 +500,9 @@
 			
 				if($_data_array['primary_key'])
 				{
-				
-					$_data = $this->validate_data($_data_array['type'], $_primary);//run validation
+
+					//run validation
+					$_data = $this->validate_data($_data_array['type'], $_primary);
 				
 					if(!$_data)
 					{
@@ -534,8 +531,9 @@
 			
 				if($_data_array['primary_key'])
 				{
-				
-					$_data = $this->validate_data($_data_array['type'], $_primary);//run validation
+
+					//run validation
+					$_data = $this->validate_data($_data_array['type'], $_primary);
 				
 					if(!$_data)
 					{
@@ -664,13 +662,6 @@
 			return $_primary;
 		
 		}
-
-//		function get_count()
-//		{
-//
-//			return $this->db_read->retrieve_count($this->table, $this->db_variables);
-//
-//		}
 		
 		function toggle_enable()
 		{
@@ -700,8 +691,6 @@
 
 		function get_primaries($_where = "", $_offset = 0, $_limit = 25, $_order_by = 'id')
 		{
-			
-			//$_object = new $this->class_name($this->db);
 		
 			//Ordering by date_created DESC to get the most recent submission
 			$_primary_array = $this->db_read->retrieve_all_primaries($this->table, $this->db_variables, $_where, $_offset, $_limit, 'ORDER BY ' . $_order_by);
@@ -712,8 +701,6 @@
 	
 		function get_paginated_primaries($_pagination, $_where = "", $_order_by = 'id')
 		{
-			
-			//$_object = new $this->class_name($this->db);
 		
 			//Ordering by user_id DESC to get the most recent submission
 			$_primary_array = $this->db_read->retrieve_all_primaries($this->table, $this->db_variables, $_where, $_pagination->get_offset(), $_pagination->get_limit(), 'ORDER BY ' . $_order_by);
@@ -724,8 +711,6 @@
 		
 		function get_distinct_primaries($distinct_key, $_where = "", $_offset = 0, $_limit = 25, $_order_by = 'id')
 		{
-			
-			//$_object = new $this->class_name($this->db);
 		
 			//Ordering by date_created DESC to get the most recent submission
 			$_primary_array = $this->db_read->retrieve_distinct_primaries($this->table, $distinct_key, $_where, $_offset, $_limit, 'ORDER BY ' . $_order_by);
@@ -757,8 +742,6 @@
 		
 		function get_count($_where = '')
 		{
-		
-			//$_object = new $this->class_name($this->db);
 			
 			return $this->db_read->count_objects($this->table, $this->db_variables, $_where);
 			

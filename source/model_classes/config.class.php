@@ -8,7 +8,7 @@
 	    public function __construct()
 	    {
 	        
-	    	//TODO remove $this/$that hack when on HP 5.4+
+	    	//TODO remove $this/$that hack when on PHP 5.4+
 	    	$that = $this;
 	        
 			$this['host_name'] = function ()

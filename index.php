@@ -43,11 +43,5 @@
 	$user->put_value('hash', 'test@email2.com');
 	$user->put_value('password', 'password123');
 
-	$query = $db->get_write_connection()->query("INSERT INTO users SET first_name = 'coy'");
-
-	$query->execute();
-
-	echo $user->save();
-
-	//$this->assertGreaterThan(0, $user->save());
+	echo $user->save() . ' is the ID of the newly inserted user.';
 
